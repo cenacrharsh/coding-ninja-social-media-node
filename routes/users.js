@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-console.log(`Printing form routes/users.js`);
+console.log(`Printing from routes/users.js`);
 
 // Controller
 const usersController = require("../controllers/users_controller");
@@ -13,10 +13,6 @@ router.get("/", function (req, res) {
 });
 
 router.get("/profile", usersController.profile);
-
-/* for any further routes access form here:
-router.use('/routerName', require('./routerFile'));
-*/
-
+router.get("/post", usersController.post);
 
 module.exports = router;
