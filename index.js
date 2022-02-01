@@ -2,7 +2,11 @@ const express = require("express");
 const app = express();
 const port = 8000;
 
-// use express router
+//Setting Up the View Engine
+app.set("view engine", "ejs");
+app.set("views", "./views");
+
+// Use Express Router
 app.use("/", require("./routes")); /* fetches index.js by default */
 
 app.listen(port, function (err) {
