@@ -12,7 +12,7 @@ module.exports.signUp = function (req, res) {
   console.log(`Printing from controllers/users_controller.js`);
 
   return res.render("user_sign_up", {
-    title: "User Signup",
+    title: "Codeial | Sign Up",
   });
 };
 
@@ -21,6 +21,6 @@ module.exports.signIn = function (req, res) {
   console.log(`Printing from controllers/users_controller.js`);
 
   return res.render("user_sign_in", {
-    title: "User Sign In",
+    title: "Codeial | Sign In",
   });
 };
