@@ -24,3 +24,9 @@ module.exports.signIn = function (req, res) {
     title: "Codeial | Sign In",
   });
 };
+
+// Get the Sign Up Data
+module.exports.create = function (req, res) {};
+
+// Get the Sign Up Data
+module.exports.createSession = function (req, res) {};
