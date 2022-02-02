@@ -12,7 +12,7 @@ const cookieParser = require("cookie-parser");
 const db = require("./config/mongoose");
 
 // Middleware
-// app.use(express.urlencoded());
+app.use(express.urlencoded());
 app.use(cookieParser());
 
 // Static Files

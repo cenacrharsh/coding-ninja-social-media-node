@@ -18,7 +18,6 @@ const userSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    /* Stores created at and updated at */
   }
 );
 
