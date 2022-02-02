@@ -5,8 +5,15 @@ const port = 8000;
 // Layouts
 const expressLayouts = require("express-ejs-layouts");
 
+// Cookies
+const cookieParser = require("cookie-parser");
+
 // Database
 const db = require("./config/mongoose");
+
+// Middleware
+// app.use(express.urlencoded());
+app.use(cookieParser());
 
 // Static Files
 app.use(express.static("./assets"));
