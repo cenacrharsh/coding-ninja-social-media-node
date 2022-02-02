@@ -1,15 +1,26 @@
+// Render the Profile Page
 module.exports.profile = function (req, res) {
   console.log(`Printing from controllers/users_controller.js`);
 
-  return res.render("user", {
+  return res.render("user_profile", {
     title: "User Profile",
   });
 };
 
-module.exports.post = function (req, res) {
+// Render the Sign Up Page
+module.exports.signUp = function (req, res) {
   console.log(`Printing from controllers/users_controller.js`);
 
-  return res.render("user", {
-    title: "User Post",
+  return res.render("user_sign_up", {
+    title: "User Signup",
+  });
+};
+
+// Render the Sign In Page
+module.exports.signIn = function (req, res) {
+  console.log(`Printing from controllers/users_controller.js`);
+
+  return res.render("user_sign_in", {
+    title: "User Sign In",
   });
 };
