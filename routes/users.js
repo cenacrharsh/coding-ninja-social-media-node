@@ -9,9 +9,12 @@ console.log(`Printing from routes/users.js`);
 const usersController = require("../controllers/users_controller");
 
 // Routes
-router.get("/profile", usersController.profile);
+router.get("/profile", passport.checkAuthentication, usersController.profile);
+
 router.get("/sign-up", usersController.signUp);
+
 router.get("/sign-in", usersController.signIn);
+
 router.post("/create", usersController.create);
 
 /* Using Passport as a Middleware to Authenticate */

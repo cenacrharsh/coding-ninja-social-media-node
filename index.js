@@ -40,8 +40,8 @@ app.use(
   session({
     name: "codeial" /* name of cookie */,
     secret: "blahsomething" /* encryption requires a key to code & decode */,
-    saveUninitialized: false,
-    resave: false,
+    saveUninitialized: false /* don't save extra data in cookie if session is uninitialized */,
+    resave: false /* don't rewrite session data if unchanged */,
     cookie: {
       maxAge: 1000 * 60 * 100,
     },
@@ -51,6 +51,9 @@ app.use(
 // Middleware to use Passport
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(
+  passport.setAuthenticatedUser
+); /* whenever any request comes in, user will be set in locals and user will be accessible in views */
 
 // Use Express Router
 app.use("/", require("./routes")); /* fetches index.js by default */
