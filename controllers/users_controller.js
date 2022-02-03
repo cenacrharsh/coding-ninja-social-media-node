@@ -61,3 +61,11 @@ module.exports.create = function (req, res) {
 module.exports.createSession = function (req, res) {
   return res.redirect("/");
 };
+
+// Sign Out and Destroy Session Cookies
+module.exports.destroySession = function (req, res) {
+  req.logout();
+  /* logout func is provided by passport to req */
+
+  return res.redirect("/");
+};
