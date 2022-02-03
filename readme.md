@@ -24,3 +24,7 @@
 
 - To create a session cookie
 - To store the logged in user's information in an encrypted format in the cookie
+
+### connect-mongo
+
+- our session cookie gets reset everytime our server starts, hence we store it in a DB - Mongo Store

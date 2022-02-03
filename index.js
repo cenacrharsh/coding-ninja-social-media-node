@@ -18,6 +18,9 @@ const session = require("express-session");
 const passport = require("passport");
 const passportLocal = require("./config/passport-local-strategy");
 
+// Mongo Store
+const MongoStore = require("connect-mongo");
+
 // Middleware
 app.use(express.urlencoded());
 app.use(cookieParser());
@@ -45,6 +48,17 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 100,
     },
+    store: MongoStore.create(
+      {
+        mongoUrl: "mongodb://localhost/codeial_development",
+        /* mongo store is used to store the session cookie in the db */
+
+        autoRemove: "disabled",
+      },
+      function (err) {
+        console.log(err || "connect-mongodb setup ok");
+      }
+    ),
   })
 );
 
