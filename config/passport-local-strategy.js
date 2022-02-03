@@ -1,5 +1,6 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const User = require("../models/user");
 
 // Authentication Using Passport
 passport.use(
@@ -27,6 +28,8 @@ passport.use(
     }
   )
 );
+
+/* The Local Strategy returns the User to Serializer which stores the user id in session cookie which is encrypted by Express-Session library */
 
 // Serializing the user to decide which key is to be kept in the cookies
 passport.serializeUser(function (user, done) {

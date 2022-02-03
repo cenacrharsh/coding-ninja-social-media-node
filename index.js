@@ -16,7 +16,7 @@ const session = require("express-session");
 
 // Passport and Passport-Local for Authentication
 const passport = require("passport");
-const passportLocal = require("passport-local");
+const passportLocal = require("./config/passport-local-strategy");
 
 // Middleware
 app.use(express.urlencoded());
@@ -30,9 +30,6 @@ app.use(expressLayouts);
 /* extract style and scripts from sub pages into the layout */
 app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);
-
-// Use Express Router
-app.use("/", require("./routes")); /* fetches index.js by default */
 
 //Setting Up the View Engine
 app.set("view engine", "ejs");
@@ -54,6 +51,9 @@ app.use(
 // Middleware to use Passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Use Express Router
+app.use("/", require("./routes")); /* fetches index.js by default */
 
 app.listen(port, function (err) {
   if (err) {

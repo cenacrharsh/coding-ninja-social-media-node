@@ -30,8 +30,6 @@ module.exports.signIn = function (req, res) {
 
 // Get the Sign Up Data
 module.exports.create = function (req, res) {
-
-  
   if (req.body.password != req.body.confirm_password) {
     return res.redirect("back");
   }
@@ -58,4 +56,6 @@ module.exports.create = function (req, res) {
 };
 
 // Sign In and Create Session for User
-module.exports.createSession = function (req, res) {};
+module.exports.createSession = function (req, res) {
+  return res.redirect("/");
+};
