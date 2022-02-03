@@ -11,6 +11,13 @@ const cookieParser = require("cookie-parser");
 // Database
 const db = require("./config/mongoose");
 
+// Express-Session for Session Cookie
+const session = require("express-session");
+
+// Passport and Passport-Local for Authentication
+const passport = require("passport");
+const passportLocal = require("passport-local");
+
 // Middleware
 app.use(express.urlencoded());
 app.use(cookieParser());
@@ -24,12 +31,29 @@ app.use(expressLayouts);
 app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);
 
+// Use Express Router
+app.use("/", require("./routes")); /* fetches index.js by default */
+
 //Setting Up the View Engine
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
-// Use Express Router
-app.use("/", require("./routes")); /* fetches index.js by default */
+// Middleware for taking in the session cookie and encrypting it
+app.use(
+  session({
+    name: "codeial" /* name of cookie */,
+    secret: "blahsomething" /* encryption requires a key to code & decode */,
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+      maxAge: 1000 * 60 * 100,
+    },
+  })
+);
+
+// Middleware to use Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.listen(port, function (err) {
   if (err) {
