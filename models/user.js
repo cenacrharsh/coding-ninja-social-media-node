@@ -21,6 +21,7 @@ const userSchema = new mongoose.Schema(
   }
 );
 
+//> make it a model in the database
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
