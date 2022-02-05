@@ -17,6 +17,8 @@
 }
 #layout-header nav .auth-links ul li {
   margin-right: 10px;
+  flex-direction: row;
+  list-style-type: none;
 }
 #layout-header nav a {
   color: white;

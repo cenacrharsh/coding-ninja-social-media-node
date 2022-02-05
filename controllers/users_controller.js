@@ -1,14 +1,14 @@
-/* Importing Model */
+//# Importing User Model
 const User = require("../models/user");
 
-// Render the Profile Page
+//! Render the Profile Page
 module.exports.profile = function (req, res) {
   return res.render("user_profile", {
     title: "User Profile",
   });
 };
 
-// Render the Sign Up Page
+//! Render the Sign Up Page
 module.exports.signUp = function (req, res) {
   if (req.isAuthenticated()) {
     return res.redirect("/users/profile");
@@ -19,7 +19,7 @@ module.exports.signUp = function (req, res) {
   });
 };
 
-// Render the Sign In Page
+//! Render the Sign In Page
 module.exports.signIn = function (req, res) {
   if (req.isAuthenticated()) {
     return res.redirect("/users/profile");
@@ -30,7 +30,7 @@ module.exports.signIn = function (req, res) {
   });
 };
 
-// Get the Sign Up Data
+//! Get the Sign Up Data
 module.exports.create = function (req, res) {
   if (req.body.password != req.body.confirm_password) {
     return res.redirect("back");
@@ -57,12 +57,12 @@ module.exports.create = function (req, res) {
   });
 };
 
-// Sign In and Create Session for User
+//! Sign In and Create Session for User
 module.exports.createSession = function (req, res) {
   return res.redirect("/");
 };
 
-// Sign Out and Removing User's Session Cookies
+//! Sign Out and Removing User's Session Cookies
 module.exports.destroySession = function (req, res) {
   req.logout();
   /* logout func is provided by passport to req */

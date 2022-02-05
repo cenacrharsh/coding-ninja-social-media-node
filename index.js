@@ -2,43 +2,43 @@ const express = require("express");
 const app = express();
 const port = 8000;
 
-// Layouts
+//# Layouts
 const expressLayouts = require("express-ejs-layouts");
 
-// Cookies
+//# Cookies
 const cookieParser = require("cookie-parser");
 
-// Database
+//# Database
 const db = require("./config/mongoose");
 
-// Express-Session for Session Cookie
+//# Express-Session for Session Cookie
 const session = require("express-session");
 
-// Passport and Passport-Local for Authentication
+//# Passport and Passport-Local for Authentication
 const passport = require("passport");
 const passportLocal = require("./config/passport-local-strategy");
 
-// Mongo Store
+//# Mongo Store
 const MongoStore = require("connect-mongo");
 
-// Middleware
+//! Middleware
 app.use(express.urlencoded());
 app.use(cookieParser());
 
-// Static Files
+//! Static Files
 app.use(express.static("./assets"));
 
-// Setting up Layouts
+//! Setting up Layouts
 app.use(expressLayouts);
 /* extract style and scripts from sub pages into the layout */
 app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);
 
-//Setting Up the View Engine
+//! Setting Up the View Engine
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
-// Middleware for taking in the session cookie and encrypting it
+//! Middleware for taking in the session cookie and encrypting it
 app.use(
   session({
     name: "codeial" /* name of cookie */,
@@ -62,14 +62,14 @@ app.use(
   })
 );
 
-// Middleware to use Passport
+//! Middleware to use Passport
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(
   passport.setAuthenticatedUser
 ); /* whenever any request comes in, user will be set in locals and user will be accessible in views */
 
-// Use Express Router
+//! Use Express Router
 app.use("/", require("./routes")); /* fetches index.js by default */
 
 app.listen(port, function (err) {
