@@ -10,6 +10,18 @@
       rows="3"
       placeholder="Type Here..."
     ></textarea>
+
     <input class="btn" type="submit" value="Post" />
   </form>
 </section>
+
+<ul>
+  <% for (var i = 0; i < post.length; i++) { %>
+  <li>
+    <div>
+      <span> <%= post[i].content %> </span>
+      <span> <%= post[i].user %> </span>
+    </div>
+  </li>
+  <% } %>
+</ul>
