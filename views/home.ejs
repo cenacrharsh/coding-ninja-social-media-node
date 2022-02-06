@@ -3,6 +3,8 @@
 <section id="feed-posts">
   <h3>Posts</h3>
 
+  <!--* Restricting the forms visibility to only signed in users -->
+  <% if(locals.user) { %>
   <form action="/posts/create" id="new-post-form" method="POST">
     <textarea
       name="content"
@@ -13,6 +15,11 @@
 
     <input class="btn" type="submit" value="Post" />
   </form>
+  <% } %>
+
+  <!-- using only "user" will give an error as user will not be defined if user
+  is not signed in, but locals is an object which is always present so if no
+  user is signed in "locals.user" will return false -->
 </section>
 
 <div id="posts-list-container">

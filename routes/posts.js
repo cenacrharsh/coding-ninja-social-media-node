@@ -7,6 +7,8 @@ const postsController = require("../controllers/posts_controller");
 const router = express.Router();
 
 //! Routes
-router.post("/create", postsController.create);
+
+//> checking authentication of user before creating a post, so if user is not signed in it will not reach the action of creating a post
+router.post("/create", passport.checkAuthentication, postsController.create);
 
 module.exports = router;
