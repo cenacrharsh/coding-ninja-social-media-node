@@ -1,5 +1,6 @@
 <h1><%= title %></h1>
 
+<!-- ! Form to create Posts -->
 <section id="feed-posts">
   <h3>Posts</h3>
 
@@ -11,6 +12,7 @@
       cols="30"
       rows="3"
       placeholder="Type Here..."
+      required
     ></textarea>
 
     <input class="btn" type="submit" value="Post" />
@@ -22,6 +24,7 @@
   user is signed in "locals.user" will return false -->
 </section>
 
+<!-- ! List of Posts -->
 <div id="posts-list-container">
   <ul>
     <% for (post of posts) { %>
@@ -35,11 +38,13 @@
       <div class="post-comments">
         <% if(locals.user) { %>
 
+        <!-- ! Form to create Comments -->
         <form action="/comments/create" method="POST">
           <input
             type="text"
             name="content"
             placeholder="Type here to add comment..."
+            required
           />
 
           <!-- a hidden input field containing the id of the post in which the comment is being made -->
@@ -49,6 +54,19 @@
         </form>
 
         <% } %>
+
+        <!-- ! List of Comments -->
+        <div class="post-comments-list">
+          <ul id="post-comments-<%= post._id %>">
+            <% for (comment of post.comments) { %>
+            <p>
+              <%= comment.content %>
+              <br />
+              <small> <%= comment.user.name %> </small>
+            </p>
+            <% } %>
+          </ul>
+        </div>
       </div>
     </li>
     <% } %>
