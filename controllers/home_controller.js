@@ -3,19 +3,32 @@ const User = require("../models/user");
 const Post = require("../models/post");
 
 module.exports.home = function (req, res) {
-  const posts = Post.find({}, function (err, post) {
-    if (err) {
-      console.log("Error in retireving posts");
-      return;
-    }
+  // Post.find({}, function (err, posts) {
+  //   if (err) {
+  //     console.log("Error in retireving posts");
+  //     return;
+  //   }
 
-    //- post.map((p) => console.log(p.content));
+  //   return res.render("home", {
+  //     title: "Codial | Home",
+  //     posts: posts,
+  //   });
+  // });
 
-    return res.render("home", {
-      title: "Home",
-      post: post,
+  //* Prepopulating the user (a referred object in our post Schema) of each post
+  Post.find({})
+    .populate("user")
+    .exec(function (err, posts) {
+      if (err) {
+        console.log("Error in retireving posts");
+        return;
+      }
+
+      return res.render("home", {
+        title: "Codial | Home",
+        posts: posts,
+      });
     });
-  });
 };
 
 /*
