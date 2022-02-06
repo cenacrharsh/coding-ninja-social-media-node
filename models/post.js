@@ -6,10 +6,18 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    //> post belongs to a user
     user: {
       type: mongoose.Schema.Types.ObjectId /* ObjectId always unique */,
       ref: "User" /* refer to user schema */,
     },
+    //> include the array of id's of all comments in this post schema itself
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comment",
+      },
+    ],
   },
   {
     timestamps: true,
