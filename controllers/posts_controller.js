@@ -46,3 +46,9 @@ module.exports.destroy = function (req, res) {
     */
   });
 };
+
+/* 
+* diffrence between user.id & user._id ?
+
+> user.id gets the string of the user._id, & user._id is of type ObjectId
+*/
