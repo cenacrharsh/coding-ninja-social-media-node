@@ -11,4 +11,10 @@ const router = express.Router();
 //> checking authentication of user before creating a comment, so if user is not signed in it will not reach the action of creating a comment
 router.post("/create", passport.checkAuthentication, commentsController.create);
 
+router.get(
+  "/destroy/:id",
+  passport.checkAuthentication,
+  commentsController.destroy
+);
+
 module.exports = router;

@@ -34,3 +34,26 @@ module.exports.create = function (req, res) {
     }
   });
 };
+
+//! Action to delete a comment
+module.exports.destroy = function (req, res) {
+  Comment.findById(req.params.id, function (err, comment) {
+    if (comment.user == req.user.id) {
+      let postId = comment.post;
+
+      comment.remove();
+
+      Post.findByIdAndUpdate(
+        postId,
+        { $pull: { comments: req.params.id } },
+        function (err, post) {
+          return res.redirect("back");
+        }
+      );
+    } else {
+      return res.redirect("back");
+    }
+  });
+};
+
+//> fetch the post id on which the comment was made before deleting comment, as posts store the comment id's as well so we need to delete those as well
