@@ -30,9 +30,12 @@ module.exports.home = function (req, res) {
         return;
       }
 
-      return res.render("home", {
-        title: "Codial | Home",
-        posts: posts,
+      User.find({}, function (err, users) {
+        return res.render("home", {
+          title: "Codeial | Home",
+          posts: posts,
+          all_user: users,
+        });
       });
     });
 };

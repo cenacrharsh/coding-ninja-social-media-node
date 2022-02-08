@@ -22,11 +22,23 @@
   <!-- using only "user" will give an error as user will not be defined if user
   is not signed in, but locals is an object which is always present so if no
   user is signed in "locals.user" will return false -->
+
+  <!-- ! List of Posts -->
+  <div id="posts-list-container">
+    <ul>
+      <% for (post of posts) { %> <%- include('_post') -%> <% } %>
+    </ul>
+  </div>
 </section>
 
-<!-- ! List of Posts -->
-<div id="posts-list-container">
-  <ul>
-    <% for (post of posts) { %> <%- include('_post') -%> <% } %>
-  </ul>
-</div>
+<section id="user-friends">
+  <h4>Friends</h4>
+
+  <% for(u of all_users) { %>
+
+  <p>
+    <a href="/users/profile/<%= u.id %>"> <%= u.name %> </a>
+  </p>
+
+  <% } %>
+</section>
