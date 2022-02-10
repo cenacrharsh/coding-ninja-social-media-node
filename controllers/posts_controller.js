@@ -10,10 +10,12 @@ module.exports.create = async function (req, res) {
       user: req.user._id,
     });
 
+    req.flash("success", "Post Published!");
+
     return res.redirect("back");
   } catch (err) {
-    console.log("Error", err);
-    return;
+    req.flash("error", err);
+    return res.redirect("back");
   }
 };
 
@@ -31,14 +33,17 @@ module.exports.destroy = async function (req, res) {
         post: req.params.id,
       });
 
+      req.flash("success", "Post and associated comments deleted");
+
       return res.redirect("back");
     } else {
       //* if user is not authorized to delete
+      req.flash("error", "You cannot delete this post");
       return res.redirect("back");
     }
   } catch (err) {
-    console.log("Error", err);
-    return;
+    req.flash("error", err);
+    return res.redirect("back");
   }
 
   //* checking whether the user who is deleting the post, created the post i.e. is authorized to delete it
