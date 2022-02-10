@@ -14,12 +14,19 @@ const db = require("./config/mongoose");
 //# Express-Session for Session Cookie
 const session = require("express-session");
 
+//# Flash Message using connect-flash
+const flash = require("connect-flash");
+
+//# Custom Middleware
+const customMware = require("./config/middleware");
+
 //# Passport and Passport-Local for Authentication
 const passport = require("passport");
 const passportLocal = require("./config/passport-local-strategy");
 
 //# Mongo Store
 const MongoStore = require("connect-mongo");
+const req = require("express/lib/request");
 
 //! Middleware
 app.use(express.urlencoded());
@@ -68,6 +75,10 @@ app.use(passport.session());
 app.use(
   passport.setAuthenticatedUser
 ); /* whenever any request comes in, user will be set in locals and user will be accessible in views */
+
+//! Middleware for setting up connect flash, and custom middleware
+app.use(flash());
+app.use(customMware.setFlash);
 
 //! Use Express Router
 app.use("/", require("./routes")); /* fetches index.js by default */
