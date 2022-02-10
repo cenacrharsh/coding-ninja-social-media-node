@@ -2,13 +2,38 @@
 const User = require("../models/user");
 const Post = require("../models/post");
 
+//! Rewriting as async/await
+module.exports.home = async function (req, res) {
+  try {
+    let posts = await Post.find({})
+      .populate("user")
+      .populate({
+        path: "comments",
+        populate: {
+          path: "user",
+        },
+      });
+
+    let users = await User.find({});
+
+    return res.render("home", {
+      title: "Codeial | Home",
+      posts: posts,
+      all_users: users,
+    });
+  } catch (err) {
+    console.log("Error", err);
+    return;
+  }
+};
+
+/*
 module.exports.home = function (req, res) {
   // Post.find({}, function (err, posts) {
   //   if (err) {
   //     console.log("Error in retireving posts");
   //     return;
   //   }
-
   //   return res.render("home", {
   //     title: "Codial | Home",
   //     posts: posts,
@@ -39,6 +64,7 @@ module.exports.home = function (req, res) {
       });
     });
 };
+*/
 
 /*
 > module.exports.actionName = function(req, res) {}
