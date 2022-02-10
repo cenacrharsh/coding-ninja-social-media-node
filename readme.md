@@ -36,3 +36,7 @@
 ### 🎯 sass
 
 - to simplify writing css, using scss
+
+### 🎯 noty (cdn)
+
+- to animate our flash messages
