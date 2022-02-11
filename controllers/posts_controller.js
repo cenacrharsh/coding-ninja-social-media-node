@@ -5,10 +5,20 @@ const Comment = require("../models/comment");
 //! Action to submit the data of the post form and save it in the DB
 module.exports.create = async function (req, res) {
   try {
-    await Post.create({
+    let post = await Post.create({
       content: req.body.content,
       user: req.user._id,
     });
+
+    //> check if it's an AJAX request, if yes then return some json
+    if (req.xhr) {
+      return res.status(200).json({
+        data: {
+          post: post,
+        },
+        message: "Post Created!",
+      });
+    }
 
     req.flash("success", "Post Published!");
 
