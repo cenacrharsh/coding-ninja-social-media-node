@@ -12,12 +12,44 @@ module.exports.profile = function (req, res) {
 };
 
 //! Update the user profile
-module.exports.update = function (req, res) {
+module.exports.update = async function (req, res) {
+  // if (req.user.id == req.params.id) {
+  //   User.findByIdAndUpdate(req.params.id, req.body, function (err, user) {
+  //     return res.redirect("back");
+  //   });
+  // } else {
+  //   return res.status(401).send("Unauthorized");
+  // }
+
   if (req.user.id == req.params.id) {
-    User.findByIdAndUpdate(req.params.id, req.body, function (err, user) {
+    try {
+      let user = await User.findById(req.params.id);
+
+      //> body parser can't parse multipart files, so multer does it for us, it takes req as a parameter and can process it, so we pass req & res to it
+      User.uploadedAvatar(req, res, function (err) {
+        if (err) {
+          console.log("Multer Error: ", err);
+        }
+
+        user.name = req.body.name;
+        user.email = req.body.email;
+
+        // console.log("req.file: ", req.file);
+
+        if (req.file) {
+          //> this is saving the path of the uploaded file into the avatar field in the user schema
+          user.avatar = User.avatarPath + "/" + req.file.filename;
+        }
+        user.save();
+
+        return res.redirect("back");
+      });
+    } catch (err) {
+      req.flash("error", err);
       return res.redirect("back");
-    });
+    }
   } else {
+    req.flash("error", "Unauthorized");
     return res.status(401).send("Unauthorized");
   }
 };
@@ -52,20 +84,21 @@ module.exports.create = function (req, res) {
 
   User.findOne({ email: req.body.email }, function (err, user) {
     if (err) {
-      console.log("error in finding user in signing up");
+      req.flash("error", err);
       return;
     }
 
     if (!user) {
       User.create(req.body, function (err, user) {
         if (err) {
-          console.log("error in creating user while signing up");
+          req.flash("error", err);
           return;
         }
 
         return res.redirect("/users/sign-in");
       });
     } else {
+      req.flash("success", "You have signed up, login to continue!");
       return res.redirect("back");
     }
   });
