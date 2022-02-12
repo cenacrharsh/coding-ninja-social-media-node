@@ -32,6 +32,9 @@ const req = require("express/lib/request");
 app.use(express.urlencoded());
 app.use(cookieParser());
 
+//! Make the uploads path available to the browser
+app.use("/uploads", express.static(__dirname + "/uploads"));
+
 //! Static Files
 app.use(express.static("./assets"));
 

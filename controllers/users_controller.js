@@ -1,3 +1,6 @@
+const fs = require("fs");
+const path = require("path");
+
 //# Importing User Model
 const User = require("../models/user");
 
@@ -37,6 +40,12 @@ module.exports.update = async function (req, res) {
         // console.log("req.file: ", req.file);
 
         if (req.file) {
+          //> if avatar exists already, then we remove it first and then save new one
+          //todo: throws an error for the first time when there is no file available to unlink, so check first that whether file exists or not as well using fs
+          if (user.avatar) {
+            fs.unlinkSync(path.join(__dirname, "..", user.avatar));
+          }
+
           //> this is saving the path of the uploaded file into the avatar field in the user schema
           user.avatar = User.avatarPath + "/" + req.file.filename;
         }
