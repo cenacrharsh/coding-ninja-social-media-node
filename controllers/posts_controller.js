@@ -12,19 +12,23 @@ module.exports.create = async function (req, res) {
 
     //> check if it's an AJAX request, if yes then return some json
     if (req.xhr) {
+      //* if we want to populate just the name of the user (we'll not want to send the password in the API), this is how we do it!
+      post = await post.populate([{ path: "user", select: "name" }]);
+
       return res.status(200).json({
         data: {
           post: post,
         },
-        message: "Post Created!",
+        message: "Post Published!",
       });
     }
 
     req.flash("success", "Post Published!");
-
     return res.redirect("back");
   } catch (err) {
     req.flash("error", err);
+    //> added this to view the error on console as well
+    console.log(err);
     return res.redirect("back");
   }
 };
@@ -43,7 +47,17 @@ module.exports.destroy = async function (req, res) {
         post: req.params.id,
       });
 
-      req.flash("success", "Post and associated comments deleted");
+      //> check if it's an AJAX request, if yes then return some json
+      if (req.xhr) {
+        return res.status(200).json({
+          data: {
+            post_id: req.params.id,
+          },
+          message: "Post Deleted!",
+        });
+      }
+
+      req.flash("success", "Post & Associated Comments Deleted");
 
       return res.redirect("back");
     } else {
