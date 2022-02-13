@@ -2,6 +2,7 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
 
+//! Action to create a comment
 module.exports.create = async function (req, res) {
   try {
     //* verify post exists in db first, before creating the comment
@@ -21,7 +22,7 @@ module.exports.create = async function (req, res) {
 
       //> check if it's an xhr request
       if (req.xhr) {
-        // Similar for comments to fetch the user's id!
+        //* Similar for comments to fetch the user's id!
         comment = await comment.populate("user", "name").execPopulate();
 
         return res.status(200).json({

@@ -26,7 +26,6 @@ const passportLocal = require("./config/passport-local-strategy");
 
 //# Mongo Store
 const MongoStore = require("connect-mongo");
-const req = require("express/lib/request");
 
 //! Middleware
 app.use(express.urlencoded());
