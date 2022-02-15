@@ -18,7 +18,11 @@
 
 ### 🎯 passport-local
 
-- Strategy used for Authentication
+- Strategy used for User Authentication & Authorization
+
+### 🎯 passport-jwt
+
+- Strategy used for API Authentication & Authorization
 
 ### 🎯 express-sessios
 

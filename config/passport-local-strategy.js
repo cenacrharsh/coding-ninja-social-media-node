@@ -1,5 +1,8 @@
+//# Importing Passport and Passport-Local-Strategy
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+
+//# Importing User Model
 const User = require("../models/user");
 
 //! Authentication Using Passport

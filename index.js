@@ -20,9 +20,10 @@ const flash = require("connect-flash");
 //# Custom Middleware
 const customMware = require("./config/middleware");
 
-//# Passport and Passport-Local for Authentication
+//# Passport and Passport-Local for Authentication, and Passport-JWT for API auth
 const passport = require("passport");
 const passportLocal = require("./config/passport-local-strategy");
+const passportJWT = require("./config/passport-jwt-strategy");
 
 //# Mongo Store
 const MongoStore = require("connect-mongo");
