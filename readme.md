@@ -24,6 +24,10 @@
 
 - Strategy used for API Authentication & Authorization
 
+### 🎯 jsonwebtoken
+
+- used for generating encrypted jwt, then passport-jwt can be used to decrypt it
+
 ### 🎯 express-sessios
 
 - To create a session cookie
