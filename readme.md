@@ -28,6 +28,14 @@
 
 - used for generating encrypted jwt, then passport-jwt can be used to decrypt it
 
+### 🎯 passport-google-oauth
+
+- used for social authentication using google oauth2.0
+
+### 🎯 crypto
+
+- generate random passwords
+
 ### 🎯 express-sessios
 
 - To create a session cookie
