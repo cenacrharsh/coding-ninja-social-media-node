@@ -13,7 +13,7 @@ passport.use(
       clientID:
         "697562612153-b6v3ptklhidjtoqemc62th9gi2tbplo0.apps.googleusercontent.com",
       clientSecret: "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",
-      callbackURL: "http://localhost:8000/uers/auth/google/callback",
+      callbackURL: "http://localhost:8000/users/auth/google/callback",
     },
     function (accessToken, refreshToken, profile, done) {
       //> find a user
@@ -24,7 +24,7 @@ passport.use(
             return;
           }
 
-          console.log(profile);
+          //console.log(profile);
 
           if (user) {
             //> if found, set this user as req.user i.e. sign in the user

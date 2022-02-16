@@ -34,4 +34,17 @@ router.post(
 
 router.get("/sign-out", usersController.destroySession);
 
+//> Social Authentication
+//* requesting google for data
+router.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
+//* callback url to which google redirects and sends data
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/users/sign-in" }),
+  usersController.createSession
+);
+
 module.exports = router;
