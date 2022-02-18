@@ -19,7 +19,7 @@ module.exports.create = async function (req, res) {
         data: {
           post: post,
         },
-        message: "Post Published!",
+        message: "Post Published via xhr!",
       });
     }
 
@@ -53,7 +53,7 @@ module.exports.destroy = async function (req, res) {
           data: {
             post_id: req.params.id,
           },
-          message: "Post Deleted!",
+          message: "Post Deleted via xhr in heading!",
         });
       }
 

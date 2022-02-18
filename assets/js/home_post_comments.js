@@ -1,11 +1,11 @@
-//# Let's implement this via classes
+// Let's implement this via classes
 
-//# this class would be initialized for every post on the page
-//# 1. When the page loads
-//# 2. Creation of every post dynamically via AJAX
+// this class would be initialized for every post on the page
+// 1. When the page loads
+// 2. Creation of every post dynamically via AJAX
 
 class PostComments {
-  //! constructor is used to initialize the instance of the class whenever a new instance is created
+  // constructor is used to initialize the instance of the class whenever a new instance is created
   constructor(postId) {
     this.postId = postId;
     this.postContainer = $(`#post-${postId}`);
@@ -14,7 +14,7 @@ class PostComments {
     this.createComment(postId);
 
     let self = this;
-    //! call for all the existing comments
+    // call for all the existing comments
     $(" .delete-comment-button", this.postContainer).each(function () {
       self.deleteComment($(this));
     });
@@ -37,7 +37,7 @@ class PostComments {
 
           new Noty({
             theme: "relax",
-            text: "Comment published!",
+            text: "Comment published via xhr!",
             type: "success",
             layout: "topRight",
             timeout: 1500,
@@ -51,22 +51,22 @@ class PostComments {
   }
 
   newCommentDom(comment) {
-    //! I've added a class 'delete-comment-button' to the delete comment link and also id to the comment's li
+    // I've added a class 'delete-comment-button' to the delete comment link and also id to the comment's li
     return $(`<li id="comment-${comment._id}">
-                     <p>
-                         
-                         <small>
-                             <a class="delete-comment-button" href="/comments/destroy/${comment._id}">X</a>
-                         </small>
-                         
-                         ${comment.content}
-                         <br>
-                         <small>
-                             ${comment.user.name}
-                         </small>
-                     </p>    
+                      <p>
+                          
+                          <small>
+                              <a class="delete-comment-button" href="/comments/destroy/${comment._id}">Delete Comment</a>
+                          </small>
+                          
+                          ${comment.content}
+                          <br>
+                          <small>
+                              ${comment.user.name}
+                          </small>
+                      </p>    
 
-             </li>`);
+              </li>`);
   }
 
   deleteComment(deleteLink) {
@@ -81,7 +81,7 @@ class PostComments {
 
           new Noty({
             theme: "relax",
-            text: "Comment Deleted",
+            text: "Comment Deleted via xhr!",
             type: "success",
             layout: "topRight",
             timeout: 1500,

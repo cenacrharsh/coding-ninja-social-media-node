@@ -10,9 +10,10 @@ let transporter = nodemailer.createTransport({
   secure: false,
   auth: {
     user: "cenacr7.harsh@gmail.com",
-    pass: "Nishant@4444",
+    pass: "Nishant@4444_cenacr7",
   },
 });
+//* auth is the authentication object in the transporter
 
 //! Templates - defines whenever we will send an html email where the file would be place inside views/mailers
 let renderTemplate = (data, relativePath) => {

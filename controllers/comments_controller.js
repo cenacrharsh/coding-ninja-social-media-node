@@ -2,6 +2,9 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
 
+//# Importing Mailer
+const commentsMailer = require("../mailers/comments_mailer");
+
 //! Action to create a comment
 module.exports.create = async function (req, res) {
   try {
@@ -20,16 +23,22 @@ module.exports.create = async function (req, res) {
       post.comments.push(comment);
       post.save();
 
+      //> populating comments.user everytime, email required for mailer
+      comment = await comment.populate([
+        { path: "user", select: "name" },
+        { path: "user", select: "email" },
+      ]);
+
+      //> calling the mailer everytime a new comment is made
+      commentsMailer.newComment(comment);
+
       //> check if it's an xhr request
       if (req.xhr) {
-        //* Similar for comments to fetch the user's id!
-        comment = await comment.populate("user", "name").execPopulate();
-
         return res.status(200).json({
           data: {
             comment: comment,
           },
-          message: "Comment Published!",
+          message: "Comment Published via xhr!",
         });
       }
 
@@ -64,7 +73,7 @@ module.exports.destroy = async function (req, res) {
           data: {
             comment_id: req.params.id,
           },
-          message: "Post deleted",
+          message: "Comment Deleted via xhr in heading!",
         });
       }
 
