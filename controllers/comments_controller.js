@@ -29,9 +29,10 @@ module.exports.create = async function (req, res) {
 
       //> populating comments.user everytime, email required for mailer
       comment = await comment.populate([
-        { path: "user", select: "name" },
-        { path: "user", select: "email" },
+        { path: "user", select: "name email" },
       ]);
+
+      // console.log("Just populated comments user", comment);
 
       // calling the mailer everytime a new comment is made
       // commentsMailer.newComment(comment);

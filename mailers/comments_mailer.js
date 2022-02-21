@@ -5,6 +5,7 @@ const nodeMailer = require("../config/nodemailer");
 
 //> another way of exporting a method
 exports.newComment = (comment) => {
+  // console.log("content of comment is: ", comment);
   let htmlString = nodeMailer.renderTemplate(
     { comment: comment },
     "/comments/new_comment.ejs"
