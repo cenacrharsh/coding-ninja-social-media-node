@@ -64,3 +64,7 @@
 ### 🎯 nodemailer
 
 - used for sending emails to users
+
+### 🎯 kue
+
+- Kue is a priority job queue backed by redis, built for node.js. We'll be using it to maintain our priority queue of delayed jobs.
