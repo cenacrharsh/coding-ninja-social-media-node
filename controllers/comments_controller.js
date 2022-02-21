@@ -5,6 +5,10 @@ const Comment = require("../models/comment");
 //# Importing Mailer
 const commentsMailer = require("../mailers/comments_mailer");
 
+//# Importing Comment Email Worker and Queue
+const commentEmailWorker = require("../workers/comment_email_worker");
+const queue = require("../config/kue");
+
 //! Action to create a comment
 module.exports.create = async function (req, res) {
   try {
@@ -29,8 +33,18 @@ module.exports.create = async function (req, res) {
         { path: "user", select: "email" },
       ]);
 
-      //> calling the mailer everytime a new comment is made
-      commentsMailer.newComment(comment);
+      // calling the mailer everytime a new comment is made
+      // commentsMailer.newComment(comment);
+
+      //> pushing into queue the job of sending emails
+      let job = queue.create("emails", comment).save(function (err) {
+        if (err) {
+          console.log("error in adding job to queue");
+          return;
+        }
+
+        // console.log("job enqueued", job.id);
+      });
 
       //> check if it's an xhr request
       if (req.xhr) {
