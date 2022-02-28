@@ -1,6 +1,7 @@
 //# Importing Model
 const Post = require("../models/post");
 const Comment = require("../models/comment");
+const Like = require("../models/like");
 
 //# Importing Mailer
 const commentsMailer = require("../mailers/comments_mailer");
@@ -31,6 +32,8 @@ module.exports.create = async function (req, res) {
       comment = await comment.populate([
         { path: "user", select: "name email" },
       ]);
+
+      // console.log("comment: ", comment);
 
       // console.log("Just populated comments user", comment);
 
@@ -80,6 +83,9 @@ module.exports.destroy = async function (req, res) {
       let post = await Post.findByIdAndUpdate(postId, {
         $pull: { comments: req.params.id },
       });
+
+      // CHANGE :: destroy the associated likes for this comment
+      await Like.deleteMany({ likeable: comment._id, onModel: "Comment" });
 
       //> check if it's an xhr request
       // send the comment id which was deleted back to the views

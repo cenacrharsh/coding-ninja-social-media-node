@@ -5,6 +5,7 @@ const Post = require("../models/post");
 //! Rewriting as async/await
 module.exports.home = async function (req, res) {
   try {
+    // CHANGE :: populate the likes of each post and comment
     let posts = await Post.find({})
       .sort("-createdAt")
       .populate("user")
@@ -13,7 +14,13 @@ module.exports.home = async function (req, res) {
         populate: {
           path: "user",
         },
+        // populate: {
+        //   path: "likes",
+        // },
       });
+    // .populate("likes");
+
+    //console.log("post: ", posts);
 
     let users = await User.find({});
 
