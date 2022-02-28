@@ -13,18 +13,11 @@ const postSchema = new mongoose.Schema(
       ref: "User" /* refer to user schema */,
     },
 
-    //> include the array of id's of all comments & likes in this post schema itself for faster access, as everytime a post is loaded we will need all the comments
+    //> include the array of id's of all comments in this post schema itself for faster access, as everytime a post is loaded we will need all the comments
     comments: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Comment",
-      },
-    ],
-
-    likes: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Like",
       },
     ],
   },
