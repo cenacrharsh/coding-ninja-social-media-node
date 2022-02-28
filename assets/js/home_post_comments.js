@@ -35,9 +35,11 @@ class PostComments {
           $(`#post-comments-${postId}`).prepend(newComment);
           pSelf.deleteComment($(" .delete-comment-button", newComment));
 
+          // CHANGE :: enable the functionality of the toggle like button on the new comment
+          new ToggleLike($(" .toggle-like-button", newComment));
           new Noty({
             theme: "relax",
-            text: "Comment published via xhr!",
+            text: "Comment published!",
             type: "success",
             layout: "topRight",
             timeout: 1500,
@@ -51,7 +53,8 @@ class PostComments {
   }
 
   newCommentDom(comment) {
-    // I've added a class 'delete-comment-button' to the delete comment link and also id to the comment's li
+    // CHANGE :: show the count of zero likes on this comment
+
     return $(`<li id="comment-${comment._id}">
                       <p>
                           
@@ -64,6 +67,14 @@ class PostComments {
                           <small>
                               ${comment.user.name}
                           </small>
+                          <small>
+                          
+                              <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${comment._id}&type=Comment">
+                                  0 Likes
+                              </a>
+                          
+                          </small>
+
                       </p>    
 
               </li>`);
@@ -81,7 +92,7 @@ class PostComments {
 
           new Noty({
             theme: "relax",
-            text: "Comment Deleted via xhr!",
+            text: "Comment Deleted",
             type: "success",
             layout: "topRight",
             timeout: 1500,

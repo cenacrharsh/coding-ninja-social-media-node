@@ -18,9 +18,12 @@
           // call the create comment class
           new PostComments(data.data.post._id);
 
+          // CHANGE :: enable the functionality of the toggle like button on the new post
+          new ToggleLike($(" .toggle-like-button", newPost));
+
           new Noty({
             theme: "relax",
-            text: "Post Published via xhr!",
+            text: "Post published!",
             type: "success",
             layout: "topRight",
             timeout: 1500,
@@ -35,6 +38,7 @@
 
   // method to create a post in DOM
   let newPostDom = function (post) {
+    // CHANGE :: show the count of zero likes on this post
     return $(`<li id="post-${post._id}">
                   <p>
                       
@@ -47,13 +51,22 @@
                       <small>
                       ${post.user.name}
                       </small>
+                      
+                      <small>
+                          
+                              <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${post._id}&type=Post">
+                                  0 Likes
+                              </a>
+                          
+                      </small>
+
                   </p>
                   <div class="post-comments">
                       
                           <form id="post-${post._id}-comments-form" action="/comments/create" method="POST">
                               <input type="text" name="content" placeholder="Type Here to add comment..." required>
                               <input type="hidden" name="post" value="${post._id}" >
-                              <input type="submit" value="Add Comment" class="btn">
+                              <input type="submit" value="Add Comment" class="btn" >
                           </form>
              
               
@@ -79,7 +92,7 @@
           $(`#post-${data.data.post_id}`).remove();
           new Noty({
             theme: "relax",
-            text: "Post Deleted via xhr!",
+            text: "Post Deleted",
             type: "success",
             layout: "topRight",
             timeout: 1500,
