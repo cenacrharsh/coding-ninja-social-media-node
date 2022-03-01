@@ -1,6 +1,26 @@
 #home-container {
   display: flex;
 
+  #new-post-form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 75%;
+
+    #textArea {
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      resize: none;
+      outline: none;
+      padding: 2px;
+    }
+
+    #postBtn {
+      width: 100px;
+    }
+  }
+
   #feed-posts {
     width: 70%;
     padding: 10px;

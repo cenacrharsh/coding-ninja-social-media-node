@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/css/home.css" />
+<link rel="stylesheet" href="/css/chat_box.css" />
 
 <div id="home-container">
   <!-- ! Form to create Posts -->
@@ -14,9 +15,10 @@
         rows="3"
         placeholder="Type Here..."
         required
+        id="textArea"
       ></textarea>
 
-      <input class="btn" type="submit" value="Post" />
+      <input class="btn" type="submit" value="Post" id="postBtn" />
     </form>
     <% } %>
 
@@ -43,6 +45,9 @@
 
     <% } %>
   </section>
+
+  <!-- > Chat Box -->
+  <%- include('_chat_box') -%>
 </div>
 
 <!-- importing this script for creating the comments & posts -->
