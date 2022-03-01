@@ -12,6 +12,7 @@ body .btn {
   background-color: #49badf;
   border: none;
   font-weight: bold;
+  color: white;
 }
 body .btn:hover {
   background-color: #82c5dc;

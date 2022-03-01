@@ -4,8 +4,8 @@
 #home-container #new-post-form {
   display: flex;
   flex-direction: column;
-  width: 50%;
-  height: 75%;
+  width: 400px;
+  height: 150px;
 }
 #home-container #new-post-form #textArea {
   padding: 0;
@@ -17,6 +17,7 @@
 }
 #home-container #new-post-form #postBtn {
   width: 100px;
+  margin-left: 0px;
 }
 #home-container #feed-posts {
   width: 70%;
@@ -27,6 +28,10 @@
   padding: 10px;
   border-left: 1px solid lightgrey;
   height: 100%;
+}
+#home-container #commmentInput {
+  outline: none;
+  height: 28px;
 }
 
 /*# sourceMappingURL=home.css.map */
