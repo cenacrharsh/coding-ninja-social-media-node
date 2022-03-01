@@ -51,6 +51,8 @@ module.exports.update = async function (req, res) {
         }
         user.save();
 
+        req.flash("success", "Profile Updated Successfully!!!");
+
         return res.redirect("back");
       });
     } catch (err) {
@@ -116,7 +118,7 @@ module.exports.create = function (req, res) {
 //! Sign In and Create Session for User
 module.exports.createSession = function (req, res) {
   //> Setting up the flash object
-  req.flash("success", "Logged in Successfully");
+  req.flash("success", "Logged in Successfully!!!");
 
   return res.redirect("/");
 };
@@ -126,7 +128,7 @@ module.exports.destroySession = function (req, res) {
   req.logout();
   /* logout func is provided by passport to req */
 
-  req.flash("success", "You have logged out!");
+  req.flash("success", "You have logged out!!!");
 
   return res.redirect("/");
 };
