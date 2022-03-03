@@ -68,3 +68,7 @@
 ### 🎯 kue
 
 - Kue is a priority job queue backed by redis, built for node.js. We'll be using it to maintain our priority queue of delayed jobs.
+
+### 🎯 socket.io
+
+- Socket.IO is a library that enables real-time, bidirectional and event-based communication between the browser and the server.We can consider the Socket.IO client as a "light" wrapper around the WebSocket API.

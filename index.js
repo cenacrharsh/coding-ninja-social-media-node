@@ -29,6 +29,12 @@ const passportGoogle = require("./config/passport-google-oauth2-strategy");
 //# Mongo Store
 const MongoStore = require("connect-mongo");
 
+//# Set up the Chat Server to be used with Socket.IO
+const chatServer = require("http").Server(app);
+const chatSockets = require("./config/chat_sockets").chatSockets(chatServer);
+chatServer.listen(5000);
+console.log(`Chat Server is Listening on Port: ${5000}`);
+
 //! Middleware
 app.use(express.urlencoded());
 app.use(cookieParser());
@@ -92,5 +98,5 @@ app.listen(port, function (err) {
     console.log(`Error in running the server : ${err}`);
   }
 
-  console.log(`Server is running on port : ${port}`);
+  console.log(`Server is Running on Port : ${port}`);
 });
