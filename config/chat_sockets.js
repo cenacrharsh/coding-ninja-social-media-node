@@ -11,5 +11,15 @@ module.exports.chatSockets = function (socketServer) {
     socket.on("disconnect", function () {
       console.log("Socket Disconnected");
     });
+
+    //> to detect user req to join chat room
+    socket.on("join_room", function (data) {
+      console.log("Joining Request Received", data);
+
+      socket.join(data.chatroom);
+
+      //* we need to tell all members of chat room, new user has joined the chatroom
+      io.in(data.chatroom).emit("user_joined", data);
+    });
   });
 };
