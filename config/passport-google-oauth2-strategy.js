@@ -1,3 +1,6 @@
+//# Environment Variables
+const env = require("./environment");
+
 const passport = require("passport");
 const googleStrategy = require("passport-google-oauth").OAuth2Strategy;
 
@@ -10,10 +13,9 @@ const { Strategy } = require("passport-jwt");
 passport.use(
   new googleStrategy(
     {
-      clientID:
-        "697562612153-b6v3ptklhidjtoqemc62th9gi2tbplo0.apps.googleusercontent.com",
-      clientSecret: "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",
-      callbackURL: "http://localhost:8000/users/auth/google/callback",
+      clientID: env.google_client_id,
+      clientSecret: env.google_client_secret,
+      callbackURL: env.google_call_back_url,
     },
     function (accessToken, refreshToken, profile, done) {
       //> find a user

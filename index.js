@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const port = 8000;
 
+//# Environment Variables
+const env = require("./config/environment");
+
 //# Layouts
 const expressLayouts = require("express-ejs-layouts");
 
@@ -43,7 +46,7 @@ app.use(cookieParser());
 app.use("/uploads", express.static(__dirname + "/uploads"));
 
 //! Static Files
-app.use(express.static("./assets"));
+app.use(express.static(env.asset_path));
 
 //! Setting up Layouts
 app.use(expressLayouts);
@@ -59,10 +62,11 @@ app.set("views", "./views");
 app.use(
   session({
     name: "codeial" /* name of cookie */,
-    secret: "blahsomething" /* encryption requires a key to code & decode */,
-    saveUninitialized: false /* don't save extra data in cookie if session is uninitialized */,
-    resave: false /* don't rewrite session data if unchanged */,
-    cookie: {
+    secret: env.session_cookie_key,
+    /* encryption requires a key to code & decode */ saveUninitialized: false,
+    /* don't save extra data in cookie if session is uninitialized */
+    resave: false,
+    /* don't rewrite session data if unchanged */ cookie: {
       maxAge: 1000 * 60 * 100,
     },
     store: MongoStore.create(

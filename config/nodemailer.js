@@ -1,18 +1,12 @@
+//# Environment Variables
+const env = require("./environment");
+
 const nodemailer = require("nodemailer");
 const ejs = require("ejs");
 const path = require("path");
 
 //! Transporter (sends the emails) - defines how communication will take place
-let transporter = nodemailer.createTransport({
-  service: "gmail",
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
-  auth: {
-    user: "cenacr7.harsh@gmail.com",
-    pass: "Nishant@4444_cenacr7",
-  },
-});
+let transporter = nodemailer.createTransport(env.smtp);
 //* auth is the authentication object in the transporter
 
 //! Templates - defines whenever we will send an html email where the file would be place inside views/mailers

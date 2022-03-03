@@ -1,3 +1,6 @@
+//# Environment Variables
+const env = require("./environment");
+
 //# Importing Passport and Passport-JWT
 const passport = require("passport");
 const JWTStrategy = require("passport-jwt").Strategy;
@@ -10,7 +13,7 @@ const User = require("../models/user");
 
 let opts = {
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-  secretOrKey: "codeial",
+  secretOrKey: env.jwt_strategy,
 };
 
 passport.use(
