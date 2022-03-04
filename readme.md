@@ -72,3 +72,7 @@
 ### 🎯 socket.io
 
 - Socket.IO is a library that enables real-time, bidirectional and event-based communication between the browser and the server.We can consider the Socket.IO client as a "light" wrapper around the WebSocket API.
+
+### 🎯 dotenv
+
+- Dotenv is a module that loads environment variables from a `.env` file into `process.env`
