@@ -8,6 +8,9 @@ const env = require("./config/environment");
 //# Morgan
 const logger = require("morgan");
 
+//# View Helper
+require("./config/view-helpers")(app);
+
 //# Layouts
 const expressLayouts = require("express-ejs-layouts");
 
