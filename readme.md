@@ -76,3 +76,11 @@
 ### 🎯 dotenv
 
 - Dotenv is a module that loads environment variables from a `.env` file into `process.env`
+
+### 🎯 morgan
+
+- HTTP request logger middleware for node.js
+
+### 🎯 rotating-file-stream
+
+- Creates a `stream.Writable` to a file which is rotated. Used for log rotation since log file can grow very large.

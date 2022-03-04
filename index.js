@@ -5,6 +5,9 @@ const port = 8000;
 //# Environment Variables
 const env = require("./config/environment");
 
+//# Morgan
+const logger = require("morgan");
+
 //# Layouts
 const expressLayouts = require("express-ejs-layouts");
 
@@ -47,6 +50,9 @@ app.use("/uploads", express.static(__dirname + "/uploads"));
 
 //! Static Files
 app.use(express.static(env.asset_path));
+
+//! Morgan
+app.use(logger(env.morgan.mode, env.morgan.options));
 
 //! Setting up Layouts
 app.use(expressLayouts);
