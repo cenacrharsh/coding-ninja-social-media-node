@@ -84,3 +84,19 @@
 ### 🎯 rotating-file-stream
 
 - Creates a `stream.Writable` to a file which is rotated. Used for log rotation since log file can grow very large.
+
+### 🎯 gulp
+
+- using gulp to build the project (collecting all assets that can be optimized and minimizing them), and while sending asset add hash along with it to diffrenctiate it from the prev version of assets sent.
+
+### 🎯 gulp-sass
+
+- converts sass files to css
+
+### 🎯 gulp-cssnano
+
+- minimizes css file for production
+
+### 🎯 gulp-rev
+
+- renames the files, by adding a hash alongside them so that when it is sent again to browser, it will have a new random string attached to it and it will be accepted by browser as a new asset.

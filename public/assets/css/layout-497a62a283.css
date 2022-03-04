@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+body #layout-main {
+  height: 100%;
+  margin: 25px;
+}
+body .btn {
+  margin: 5px;
+  padding: 8px;
+  background-color: #49badf;
+  border: none;
+  font-weight: bold;
+  color: white;
+}
+body .btn:hover {
+  background-color: #82c5dc;
+}
+
+/*# sourceMappingURL=layout.css.map */
