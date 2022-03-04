@@ -1,12 +1,13 @@
 const gulp = require("gulp");
 
-const sass = require("gulp-sass");
+const sass = require("gulp-sass")(require("sass"));
 const cssnano = require("gulp-cssnano");
 const rev = require("gulp-rev");
 const uglify = require("gulp-uglify-es").default;
 const imagemin = require("gulp-imagemin");
 const del = require("del");
 
+//! minimizing css
 gulp.task("css", function (done) {
   console.log("minifying css...");
   gulp
@@ -29,6 +30,7 @@ gulp.task("css", function (done) {
   done();
 });
 
+//! minimizing js
 gulp.task("js", function (done) {
   console.log("minifying js...");
   gulp
@@ -46,6 +48,7 @@ gulp.task("js", function (done) {
   done();
 });
 
+//! minimizing images
 gulp.task("images", function (done) {
   console.log("compressing images...");
   gulp
@@ -63,12 +66,13 @@ gulp.task("images", function (done) {
   done();
 });
 
-// empty the public/assets directory
+//! empty the public/assets directory (whenever we are building the project, we need to clear the previous build and build it from scratch)
 gulp.task("clean:assets", function (done) {
   del.sync("./public/assets");
   done();
 });
 
+//! task to run all 4 tasks above
 gulp.task(
   "build",
   gulp.series("clean:assets", "css", "js", "images"),

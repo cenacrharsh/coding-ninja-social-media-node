@@ -95,8 +95,20 @@
 
 ### 🎯 gulp-cssnano
 
-- minimizes css file for production
+- minimizes css files for production
 
 ### 🎯 gulp-rev
 
 - renames the files, by adding a hash alongside them so that when it is sent again to browser, it will have a new random string attached to it and it will be accepted by browser as a new asset.
+
+### 🎯 gulp-uglify-es
+
+- minimizes js files for production
+
+### 🎯 gulp-imagemin
+
+- minimizes images for production
+
+### 🎯 del
+
+- delete files and directories using globs, we use to delete our previous build files before creating new ones
