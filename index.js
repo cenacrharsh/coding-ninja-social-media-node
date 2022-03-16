@@ -45,7 +45,7 @@ chatServer.listen(5000);
 console.log(`Chat Server is Listening on Port: ${5000}`);
 
 //! Middleware
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 //! Make the uploads path available to the browser
