@@ -59,7 +59,8 @@ app.use(logger(env.morgan.mode, env.morgan.options));
 
 //! Setting up Layouts
 app.use(expressLayouts);
-/* extract style and scripts from sub pages into the layout */
+
+//! Extract Style and Scripts from sub pages into the layout
 app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);
 
